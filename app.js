@@ -29,7 +29,7 @@ const tokyoData = {
   maxCust: 24,
   avgCookiestokyo: 1.2,
   randomCustomersTokyo: [], 
-  totalCookiesTokyo: [], 
+  totalCookiesTokyo: [],
 };
 
 for (let i = 0; i < 14; i++) {
@@ -99,4 +99,54 @@ for (let i = 0; i < 14; i++) {
 
 console.log(limaData);
 console.log("Total Cookies Lima:", limaData.totalCookiesLima);
+
+
+const seattleList = document.createElement('ul');
+seattleList.innerHTML = '<b>Seattle:</b>';
+for (let i = 0; i < seattleData.totalCookiesSeattle.length; i++) {
+  const listItem = document.createElement('li');
+  listItem.textContent = `Hour ${i + 6}: ${seattleData.totalCookiesSeattle[i]} cookies`;
+  seattleList.appendChild(listItem);
+}
+document.body.appendChild(seattleList);
+
+
+const tokyoList = document.createElement('ul');
+tokyoList.innerHTML = '<b>Tokyo:</b>';
+for (let i = 0; i < tokyoData.totalCookiesTokyo.length; i++) {
+  const listItem = document.createElement('li');
+  listItem.textContent = `Hour ${i + 6}: ${tokyoData.totalCookiesTokyo[i]} cookies`;
+  tokyoList.appendChild(listItem);
+}
+document.body.appendChild(tokyoList);
+
+
+const dubaiList = document.createElement('ul');
+dubaiList.innerHTML = '<b>Dubai:</b>';
+for (let i = 0; i < dubaiData.totalCookiesDubai.length; i++) {
+  const listItem = document.createElement('li');
+  listItem.textContent = `Hour ${i + 6}: ${dubaiData.totalCookiesDubai[i]} cookies`;
+  dubaiList.appendChild(listItem);
+}
+document.body.appendChild(dubaiList);
+
+
+const parisList = document.createElement('ul');
+parisList.innerHTML = '<b>Paris:</b>';
+for (let i = 0; i < parisData.totalCookiesParis.length; i++) {
+  const listItem = document.createElement('li');
+  listItem.textContent = `Hour ${i + 6}: ${parisData.totalCookiesParis[i]} cookies`;
+  parisList.appendChild(listItem);
+}
+document.body.appendChild(parisList);
+
+
+const limaList = document.createElement('ul');
+limaList.innerHTML = '<b>Lima:</b>';
+for (let i = 0; i < limaData.totalCookiesLima.length; i++) {
+  const listItem = document.createElement('li');
+  listItem.textContent = `Hour ${i + 6}: ${limaData.totalCookiesLima[i]} cookies`;
+  limaList.appendChild(listItem);
+}
+document.body.appendChild(limaList);
 
