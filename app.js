@@ -1,152 +1,70 @@
+let table = document.createElement('table')
+
+
+
+
+
+// This is a divider for the JS below that is functional, and the JS above which will be generating my HTML and calling apon the JS below. :D
+
+
+// Function to generate a random number within a specified range
 function getRandomNumber(min, max) {
   let range = max - min + 1;
   let randomNumber = Math.floor(Math.random() * range) + min;
   return randomNumber;
 }
 
-const seattleData = {
-  minCust: 23,
-  maxCust: 65,
-  avgCookiesSeattle: 4.5,
-  randomCustomersSeattle: [], // Array to store the randomly generated numbers
-  totalCookiesSeattle: [], // Array to store the total cookies per hour
-};
+// Constructor function to create city data objects
+function CityData(minCust, maxCust, avgCookies, cityName) {
+  // Assigning input values to object properties
+  this.minCust = minCust;
+  this.maxCust = maxCust;
+  this.avgCookies = avgCookies;
+  this.randomCustomers = [];
+  this.totalCookies = [];
+  this.cityName = cityName;
 
-for (let i = 0; i < 14; i++) {
-  let randomCustomer = getRandomNumber(seattleData.minCust, seattleData.maxCust);
-  seattleData.randomCustomersSeattle.push(randomCustomer);
-  
-  let totalCookies = Math.floor(randomCustomer * seattleData.avgCookiesSeattle);
-  seattleData.totalCookiesSeattle.push(totalCookies);
+  // Generating random customers and calculating total cookies for 14 iterations
+  for (let i = 0; i < 14; i++) {
+    // Generate a random number of customers within the specified range
+    let randomCustomer = getRandomNumber(this.minCust, this.maxCust);
+    // Add the random customer value to the randomCustomers array
+    this.randomCustomers.push(randomCustomer);
+
+    // Calculate the total cookies by multiplying randomCustomer with avgCookies
+    let totalCookies = Math.floor(randomCustomer * this.avgCookies);
+    // Add the totalCookies value to the totalCookies array
+    this.totalCookies.push(totalCookies);
+  }
+
+  // Output the created city object to the console
+  console.log(this);
+  // Output the total cookies for the city to the console
+  console.log("Total Cookies " + this.cityName + ":", this.totalCookies);
 }
 
-console.log(seattleData);
-console.log("Total Cookies Seattle", seattleData.totalCookiesSeattle);
+const seattleData = new CityData(23, 65, 4.5, "Seattle");
+const tokyoData = new CityData(3, 24, 1.2, "Tokyo");
+const dubaiData = new CityData(11, 38, 3.7, "Dubai");
+const parisData = new CityData(20, 38, 2.3, "Paris");
+const limaData = new CityData(2, 16, 4.6, "Lima");
 
+// Collecting Totals from each city. Learned about the Reduce function from GPT. I can call apon it to gather data from my arrays.
+const seattleTotal = seattleData.totalCookies.reduce((accumulate, value) => accumulate + value, 0); 
+const tokyoTotal = tokyoData.totalCookies.reduce((accumulate, value) => accumulate + value, 0); 
+const dubaiTotal = dubaiData.totalCookies.reduce((accumulate, value) => accumulate + value, 0);
+const parisTotal = parisData.totalCookies.reduce((accumulate, value) => accumulate + value, 0);
+const limaTotal = limaData.totalCookies.reduce((accumulate, value) => accumulate + value, 0);
+// accumulate is gathering the value as the reduce method iterates over the array.
+// value represents the current element being processed in the array.
+// I wrote the const above to target each cities random data that is generated, and add it all together. 
 
-const tokyoData = {
-  minCust: 3,
-  maxCust: 24,
-  avgCookiestokyo: 1.2,
-  randomCustomersTokyo: [], 
-  totalCookiesTokyo: [],
-};
+// Grand totals of all cities AND the combined total :) 
+const grandTotal = seattleTotal + tokyoTotal + dubaiTotal + parisTotal + limaTotal;
 
-for (let i = 0; i < 14; i++) {
-  let randomCustomer = getRandomNumber(tokyoData.minCust, tokyoData.maxCust);
-  tokyoData.randomCustomersTokyo.push(randomCustomer);
-  
-  let totalCookies = Math.floor(randomCustomer * tokyoData.avgCookiestokyo);
-  tokyoData.totalCookiesTokyo.push(totalCookies);
-}
-
-console.log(tokyoData);
-console.log("Total Cookies Tokyo", tokyoData.totalCookiesTokyo);
-
-
-const dubaiData = {
-  minCust: 11,
-  maxCust: 38,
-  avgCookiesDubai: 3.7,
-  randomCustomersDubai: [], 
-  totalCookiesDubai: [],
-}
-for (let i = 0; i < 14; i++) {
-  let randomCustomer = getRandomNumber(dubaiData.minCust, dubaiData.maxCust);
-  dubaiData.randomCustomersDubai.push(randomCustomer);
-  
-  let totalCookies = Math.floor(randomCustomer * dubaiData.avgCookiesDubai);
-  dubaiData.totalCookiesDubai.push(totalCookies);
-}
-
-console.log(dubaiData);
-console.log("Total Cookies Dubai:", dubaiData.totalCookiesDubai);
-
-
-const parisData = {
-  minCust: 20,
-  maxCust: 38,
-  avgCookiesParis: 2.3,
-  randomCustomersParis: [], 
-  totalCookiesParis: [],
-}
-for (let i = 0; i < 14; i++) {
-  let randomCustomer = getRandomNumber(parisData.minCust, parisData.maxCust);
-  parisData.randomCustomersParis.push(randomCustomer);
-  
-  let totalCookies = Math.floor(randomCustomer * parisData.avgCookiesParis);
-  parisData.totalCookiesParis.push(totalCookies);
-}
-
-console.log(parisData);
-console.log("Total Cookies Paris:", parisData.totalCookiesParis);
-
-
-const limaData = {
-  minCust: 2,
-  maxCust: 16,
-  avgCookiesLima: 4.6,
-  randomCustomersLima: [], 
-  totalCookiesLima: [],
-}
-for (let i = 0; i < 14; i++) {
-  let randomCustomer = getRandomNumber(limaData.minCust, limaData.maxCust);
-  limaData.randomCustomersLima.push(randomCustomer);
-  
-  let totalCookies = Math.floor(randomCustomer * limaData.avgCookiesLima);
-  limaData.totalCookiesLima.push(totalCookies);
-}
-
-console.log(limaData);
-console.log("Total Cookies Lima:", limaData.totalCookiesLima);
-
-
-const seattleList = document.createElement('ul');
-seattleList.innerHTML = '<b>Seattle:</b>';
-for (let i = 0; i < seattleData.totalCookiesSeattle.length; i++) {
-  const listItem = document.createElement('li');
-  listItem.textContent = `Hour ${i + 6}: ${seattleData.totalCookiesSeattle[i]} cookies`;
-  seattleList.appendChild(listItem);
-}
-document.body.appendChild(seattleList);
-
-
-const tokyoList = document.createElement('ul');
-tokyoList.innerHTML = '<b>Tokyo:</b>';
-for (let i = 0; i < tokyoData.totalCookiesTokyo.length; i++) {
-  const listItem = document.createElement('li');
-  listItem.textContent = `Hour ${i + 6}: ${tokyoData.totalCookiesTokyo[i]} cookies`;
-  tokyoList.appendChild(listItem);
-}
-document.body.appendChild(tokyoList);
-
-
-const dubaiList = document.createElement('ul');
-dubaiList.innerHTML = '<b>Dubai:</b>';
-for (let i = 0; i < dubaiData.totalCookiesDubai.length; i++) {
-  const listItem = document.createElement('li');
-  listItem.textContent = `Hour ${i + 6}: ${dubaiData.totalCookiesDubai[i]} cookies`;
-  dubaiList.appendChild(listItem);
-}
-document.body.appendChild(dubaiList);
-
-
-const parisList = document.createElement('ul');
-parisList.innerHTML = '<b>Paris:</b>';
-for (let i = 0; i < parisData.totalCookiesParis.length; i++) {
-  const listItem = document.createElement('li');
-  listItem.textContent = `Hour ${i + 6}: ${parisData.totalCookiesParis[i]} cookies`;
-  parisList.appendChild(listItem);
-}
-document.body.appendChild(parisList);
-
-
-const limaList = document.createElement('ul');
-limaList.innerHTML = '<b>Lima:</b>';
-for (let i = 0; i < limaData.totalCookiesLima.length; i++) {
-  const listItem = document.createElement('li');
-  listItem.textContent = `Hour ${i + 6}: ${limaData.totalCookiesLima[i]} cookies`;
-  limaList.appendChild(listItem);
-}
-document.body.appendChild(limaList);
-
+console.log("Total Cookies Seattle:", seattleTotal);
+console.log("Total Cookies Tokyo:", tokyoTotal);
+console.log("Total Cookies Dubai:", dubaiTotal);
+console.log("Total Cookies Paris:", parisTotal);
+console.log("Total Cookies Lima:", limaTotal);
+console.log("Grand Total Cookies:", grandTotal);
