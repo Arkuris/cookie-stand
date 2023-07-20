@@ -1,11 +1,4 @@
-let table = document.createElement('table')
-
-
-
-
-
-// This is a divider for the JS below that is functional, and the JS above which will be generating my HTML and calling apon the JS below. :D
-
+'use strict'
 
 // Function to generate a random number within a specified range
 function getRandomNumber(min, max) {
@@ -57,7 +50,7 @@ const parisTotal = parisData.totalCookies.reduce((accumulate, value) => accumula
 const limaTotal = limaData.totalCookies.reduce((accumulate, value) => accumulate + value, 0);
 // accumulate is gathering the value as the reduce method iterates over the array.
 // value represents the current element being processed in the array.
-// I wrote the const above to target each cities random data that is generated, and add it all together. 
+// the code above is used to target each cities random data that is generated, and add it all together. 
 
 // Grand totals of all cities AND the combined total :) 
 const grandTotal = seattleTotal + tokyoTotal + dubaiTotal + parisTotal + limaTotal;
