@@ -1,4 +1,38 @@
-table{
-  background-color: grey;
-  border: 1px solid blue;
+/* CSS for the table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+
+/* CSS for the table header (thead) */
+thead {
+  background-color: salmon;
+}
+
+/* CSS for the table header cells (th) */
+thead th {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
+}
+
+/* CSS for the table body cells (td) */
+tbody td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: right;
+}
+
+/* CSS for the table footer cells (td) */
+tfoot td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: right;
+}
+
+/* CSS for the "Totals" row */
+tfoot tr:last-child {
+  font-weight: bold;
+  background-color: salmon;
 }

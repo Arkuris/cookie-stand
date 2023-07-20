@@ -61,3 +61,80 @@ console.log("Total Cookies Dubai:", dubaiTotal);
 console.log("Total Cookies Paris:", parisTotal);
 console.log("Total Cookies Lima:", limaTotal);
 console.log("Grand Total Cookies:", grandTotal);
+
+function calculateDailyTotals(timeSlots) {
+  const dailyTotals = timeSlots.map((timeSlot) => {
+    return [seattleData, tokyoData, dubaiData, parisData, limaData]
+      .map((cityData) => cityData.totalCookies[timeSlots.indexOf(timeSlot)])
+      .reduce((accumulate, value) => accumulate + value, 0);
+  });
+
+  return dailyTotals;
+}
+
+function fillTable() {
+  const timeSlots = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
+
+  // Get the table body and footer elements
+  const tableBody = document.getElementById('table-body');
+  const tableFooter = document.getElementById('table-footer');
+
+  // Loop through each city and populate the rows for each city
+  [seattleData, tokyoData, dubaiData, parisData, limaData].forEach((cityData) => {
+    const row = document.createElement('tr');
+
+    // Add the city name as the first cell in the row
+    const cityNameCell = document.createElement('td');
+    cityNameCell.textContent = cityData.cityName;
+    row.appendChild(cityNameCell);
+
+    // Variables to store daily totals for each city
+    let cityDailyTotal = 0;
+
+    // Add the cookies data for each time slot as subsequent cells in the row
+    cityData.totalCookies.forEach((cookies) => {
+      const cell = document.createElement('td');
+      cell.textContent = cookies;
+      row.appendChild(cell);
+
+      // Calculate daily total for each city
+      cityDailyTotal += cookies;
+    });
+
+    // Add the daily total for the city as the last cell in the row
+    const dailyTotalCell = document.createElement('td');
+    dailyTotalCell.textContent = cityDailyTotal;
+    row.appendChild(dailyTotalCell);
+
+    // Add the row to the table body
+    tableBody.appendChild(row);
+  });
+
+  // Calculate and add the combined totals on the far right side
+  const totalsRow = document.createElement('tr');
+  const totalsHeaderCell = document.createElement('td');
+  totalsHeaderCell.textContent = 'Totals';
+  totalsRow.appendChild(totalsHeaderCell);
+
+  const grandTotals = timeSlots.map((timeSlot) => {
+    return [seattleData, tokyoData, dubaiData, parisData, limaData]
+      .map((cityData) => cityData.totalCookies[timeSlots.indexOf(timeSlot)])
+      .reduce((accumulate, value) => accumulate + value, 0);
+  });
+
+  grandTotals.forEach((grandTotal) => {
+    const cell = document.createElement('td');
+    cell.textContent = grandTotal;
+    totalsRow.appendChild(cell);
+  });
+
+  const combinedGrandTotal = grandTotals.reduce((accumulate, value) => accumulate + value, 0);
+  const combinedGrandTotalCell = document.createElement('td');
+  combinedGrandTotalCell.textContent = combinedGrandTotal;
+  totalsRow.appendChild(combinedGrandTotalCell);
+
+  tableFooter.appendChild(totalsRow);
+}
+
+// Call the function to fill the table when the page loads
+fillTable();
